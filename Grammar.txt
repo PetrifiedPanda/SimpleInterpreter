@@ -1,0 +1,8 @@
+Grammar:
+a ::= n | X | (a + a) | (a - a) | (a * a) | (a / a)
+b ::= true | false | (a == a) | (a <= a) | !b | (b && b) | (b || b)
+c ::= skip | X = a | if b e [else e]+ | while b e | for (c ; b ; c) e | do e while b | print(a)
+seq ::= c [; c]*
+e ::= [{ seq }] | c
+X -> Variables
+n -> Integers
