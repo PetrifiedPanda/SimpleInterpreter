@@ -1,0 +1,12 @@
+x = 10  ;  if (x <= 50) { print((10 - 9)) } else { print((3220 * 0)) }
+x = 10  ;  if (x <= 50) print((10 - 9)) else print((3220 * 0))
+x = 10; if (x <= 50) print(800)
+x = 10; if (x <= 6) print(800); print(1)
+truef = 100 ; while (truef <= 500) { print(truef) ; truef = (truef + 1) }
+truef = 100 ; while (truef <= 500) truef = (truef + 1); print(truef)
+x = 100 ; y = (x + 10) ; if (x <= y) { x = (y + 1) ; z = 100 } else { y = (x - 1) ; a = (100 * 20) } ; z = (69 - x)
+x = 10 ; if ((x == 10) and !false) { print(1) } else { skip }
+for (i = 0; (i <= 11); i = (i + 1)) { print(i) }; print(300)
+for (i = 0; (i <= 11); i = (i + 1)) print(i); print(300)
+x = 10; do x = (x + 1) while ((11 <= x) and (x <= 100)); print(x)
+x = 10; do { x = (x + 1); print(x) } while ((11 <= x) and (x <= 50)); print(x)
