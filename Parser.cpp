@@ -252,12 +252,15 @@ bool Parser::nextIsLogicalOp() const {
         return false;
 
     int openingBracketCount = 1; // currentToken_.type() must be LBRACKET
+    size_t lastOpenedBracket = -1;
 
     auto it = tokens_.begin();
 
     while (it != tokens_.end() && it->type() != Token::RBRACKET) {
-        if (it->type() == Token::LBRACKET)
+        if (it->type() == Token::LBRACKET) {
+            lastOpenedBracket = it->sourceLocation();
             ++openingBracketCount;
+        }
 
         ++it;
     }
@@ -276,6 +279,6 @@ bool Parser::nextIsLogicalOp() const {
             return false;
         else
             throw SyntaxError(command_, it->sourceLocation(), {Token::AND, Token::OR, Token::EQ, Token::LEQ}, it->type());
-    }
-    throw std::runtime_error("Not all brackets were closed correctly"); // TODO: Better error message
+    } else 
+        throw InterpreterError(command_, lastOpenedBracket, "Opening Bracket has no corresponding closing bracket");
 }
