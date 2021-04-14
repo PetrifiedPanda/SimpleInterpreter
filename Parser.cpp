@@ -35,13 +35,13 @@ void Parser::acceptIt() {
     nextToken();
 }
 
-Command* Parser::parseSequence() {
-    Command* currentResult = nullptr;
+Statement* Parser::parseSequence() {
+    Statement* currentResult = nullptr;
     do {
         if (currentToken_.type() == Token::SEMICOLON)
             acceptIt();
 
-        Command* newResult = parseCommand();
+        Statement* newResult = parseCommand();
 
         if (currentResult == nullptr)
             currentResult = newResult;
@@ -53,7 +53,7 @@ Command* Parser::parseSequence() {
     return currentResult;
 }
 
-Command* Parser::parseCommand() {
+Statement* Parser::parseCommand() {
     size_t sourceLocation = currentToken_.sourceLocation();
     switch (currentToken_.type()) {
 
@@ -74,9 +74,9 @@ Command* Parser::parseCommand() {
             acceptIt();
             BoolExpression* cond = parseBoolExpression();
 
-            Command* ifCom = parseSingleOrCompoundStatement();
+            Statement* ifCom = parseSingleOrCompoundStatement();
 
-            Command* elseCom = nullptr;
+            Statement* elseCom = nullptr;
             if (currentToken_.type() == Token::ELSE) {
                 acceptIt();
                 elseCom = parseSingleOrCompoundStatement();
@@ -87,7 +87,7 @@ Command* Parser::parseCommand() {
 
         case Token::DO: {
             acceptIt();
-            Command* loopBody = parseSingleOrCompoundStatement();
+            Statement* loopBody = parseSingleOrCompoundStatement();
             accept(Token::WHILE);
             BoolExpression* cond = parseBoolExpression();
             return new DoWhileLoop(sourceLocation, cond, loopBody);
@@ -96,21 +96,21 @@ Command* Parser::parseCommand() {
         case Token::FOR: {
             acceptIt();
             accept(Token::LBRACKET);
-            Command* initExpr = parseCommand();
+            Statement* initExpr = parseCommand();
             accept(Token::SEMICOLON);
             BoolExpression* cond = parseBoolExpression();
             accept(Token::SEMICOLON);
-            Command* incrExpr = parseCommand();
+            Statement* incrExpr = parseCommand();
             accept(Token::RBRACKET);
 
-            Command* loopBody = parseSingleOrCompoundStatement();
+            Statement* loopBody = parseSingleOrCompoundStatement();
             return new ForLoop(sourceLocation, initExpr, cond, incrExpr, loopBody);
         }
 
         case Token::WHILE: {
             acceptIt();
             BoolExpression* cond = parseBoolExpression();
-            Command* loopBody = parseSingleOrCompoundStatement();
+            Statement* loopBody = parseSingleOrCompoundStatement();
             return new WhileLoop(sourceLocation, cond, loopBody);
         }
 
@@ -127,10 +127,10 @@ Command* Parser::parseCommand() {
     }
 }
 
-Command* Parser::parseSingleOrCompoundStatement() {
+Statement* Parser::parseSingleOrCompoundStatement() {
     if (currentToken_.type() == Token::LBRACE) {
         acceptIt();
-        Command* seq = parseSequence();
+        Statement* seq = parseSequence();
         accept(Token::RBRACE);
         return seq;
     } else 
@@ -184,6 +184,13 @@ ArithmeticExpression* Parser::parseArithmeticExpression() {
             ArithmeticExpression* right = parseArithmeticExpression();
             accept(Token::RBRACKET);
             return new ABinaryOperation(sourceLocation, left, right, op);
+        }
+
+        case Token::INPUT: {
+            acceptIt();
+            accept(Token::LBRACKET);
+            accept(Token::RBRACKET);
+            return new InputCommand(sourceLocation);
         }
         
         default:

@@ -17,7 +17,7 @@ class Token {
         LBRACE, RBRACE,
         IF, ELSE, 
         FOR, DO, WHILE,
-        PRINT, SKIP,
+        PRINT, INPUT, SKIP,
 
         VARNAME, NUM,
 

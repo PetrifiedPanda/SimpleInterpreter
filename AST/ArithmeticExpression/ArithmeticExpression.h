@@ -6,7 +6,7 @@
 class ArithmeticExpression : public ASTNode {
    public:
     enum Type {
-        BINOP, LIT, VAR
+        BINOP, LIT, VAR, INPUT
     };
 
     const Type type;

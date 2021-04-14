@@ -3,12 +3,12 @@
 #include "../ASTNode.h"
 #include "../BoolExpression/BoolExpression.h"
 
-class WhileLoop : public Command {
+class WhileLoop : public Statement {
   public:
     BoolExpression* condition;
-    Command* loopBody;
+    Statement* loopBody;
 
-    WhileLoop(size_t sourceLocation, BoolExpression* condition, Command* loopBody);
+    WhileLoop(size_t sourceLocation, BoolExpression* condition, Statement* loopBody);
     ~WhileLoop() override;
 
     void visit(VisitorBase& v) override;

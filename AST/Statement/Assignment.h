@@ -5,7 +5,7 @@
 #include "../ASTNode.h"
 #include "../ArithmeticExpression/ArithmeticExpression.h"
 
-class Assignment : public Command {
+class Assignment : public Statement {
    public:
     std::string varname;
     ArithmeticExpression* valueExpression;

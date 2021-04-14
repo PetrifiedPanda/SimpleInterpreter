@@ -1,7 +1,7 @@
 #include "Skip.h"
 
 Skip::Skip(size_t sourceLocation) :
-    Command(sourceLocation, SKIP) {}
+    Statement(sourceLocation, SKIP) {}
 
 void Skip::visit(VisitorBase& v) {
     v.visitSkip(this);

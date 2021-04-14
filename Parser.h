@@ -18,9 +18,9 @@ class Parser {
     void accept(Token::Type kind);
     void acceptIt();
 
-    Command* parseSequence();
-    Command* parseCommand();
-    Command* parseSingleOrCompoundStatement();
+    Statement* parseSequence();
+    Statement* parseCommand();
+    Statement* parseSingleOrCompoundStatement();
     ArithmeticExpression* parseArithmeticExpression();
     BoolExpression* parseBoolExpression();
 

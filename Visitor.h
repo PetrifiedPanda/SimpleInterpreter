@@ -25,6 +25,7 @@ class Visitor : public VisitorBase {
     void visitWhile(WhileLoop* w) override;
 
     void visitABinaryOp(ABinaryOperation* o) override;
+    void visitInput(InputCommand* i) override;
     void visitNumLit(NumericLiteral* l) override;
     void visitVarRef(VariableRef* v) override;
 
@@ -38,5 +39,5 @@ class Visitor : public VisitorBase {
 
     bool contains(const std::string& varname) const;
 
-    void scopeUnion(Command* first, Command* second);
+    void scopeUnion(Statement* first, Statement* second);
 };

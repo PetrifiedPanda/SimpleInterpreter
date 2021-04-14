@@ -1,7 +1,7 @@
 #include "DoWhileLoop.h"
 
-DoWhileLoop::DoWhileLoop(size_t sourceLocation, BoolExpression* condition, Command* loopBody) :
-    Command(sourceLocation, DOWHILE),
+DoWhileLoop::DoWhileLoop(size_t sourceLocation, BoolExpression* condition, Statement* loopBody) :
+    Statement(sourceLocation, DOWHILE),
     condition(condition),
     loopBody(loopBody) {}
 

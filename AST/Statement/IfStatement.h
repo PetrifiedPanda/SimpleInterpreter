@@ -3,13 +3,13 @@
 #include "../ASTNode.h"
 #include "../BoolExpression/BoolExpression.h"
 
-class IfStatement : public Command {
+class IfStatement : public Statement {
    public:
     BoolExpression* condition;
-    Command* ifCom;
-    Command* elseCom;
+    Statement* ifCom;
+    Statement* elseCom;
 
-    IfStatement(size_t sourceLocation, BoolExpression* condition, Command* ifCom, Command* elseCom);
+    IfStatement(size_t sourceLocation, BoolExpression* condition, Statement* ifCom, Statement* elseCom);
     ~IfStatement() override;
 
     void visit(VisitorBase& v) override;

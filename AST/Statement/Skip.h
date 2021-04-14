@@ -2,7 +2,7 @@
 
 #include "../ASTNode.h"
 
-class Skip : public Command {
+class Skip : public Statement {
    public:
     Skip(size_t sourceLocation);
 

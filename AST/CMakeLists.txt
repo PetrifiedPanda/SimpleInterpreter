@@ -8,6 +8,6 @@ set(Sources
 
 target_sources(${This} PUBLIC ${Sources})
 
-add_subdirectory(Command)
+add_subdirectory(Statement)
 add_subdirectory(ArithmeticExpression)
 add_subdirectory(BoolExpression)

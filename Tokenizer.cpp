@@ -20,7 +20,8 @@ const std::map<std::string, Token::Type> reservedWords = {
     {"do", Token::DO},
     {"while", Token::WHILE},
     {"for", Token::FOR},
-    {"print", Token::PRINT}
+    {"print", Token::PRINT},
+    {"input", Token::INPUT}
 };
 
 Token parseMultiCharToken(const std::string& text, size_t start);

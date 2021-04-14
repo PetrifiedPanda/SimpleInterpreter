@@ -55,6 +55,10 @@ void Visitor::visitABinaryOp(ABinaryOperation* o) {
     o->rightOperand->visit(*this);
 }
 
+void Visitor::visitInput(InputCommand* i) {
+
+}
+
 void Visitor::visitNumLit(NumericLiteral* l) {
 
 }
@@ -111,7 +115,7 @@ bool Visitor::contains(const std::string& varname) const {
 }
 
 // Only keep the variables that exist in the scopes from both nodes
-void Visitor::scopeUnion(Command* first, Command* second) {
+void Visitor::scopeUnion(Statement* first, Statement* second) {
     identifiers_.emplace_front();
     first->visit(*this);
     std::list<std::string> oldScope = std::move(identifiers_.front());

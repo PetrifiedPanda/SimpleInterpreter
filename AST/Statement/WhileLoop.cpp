@@ -1,7 +1,7 @@
 #include "WhileLoop.h"
 
-WhileLoop::WhileLoop(size_t sourceLocation, BoolExpression* condition, Command* loopBody) :
-    Command(sourceLocation, WHILE),
+WhileLoop::WhileLoop(size_t sourceLocation, BoolExpression* condition, Statement* loopBody) :
+    Statement(sourceLocation, WHILE),
     condition(condition),
     loopBody(loopBody) {}
 

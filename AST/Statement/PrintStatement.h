@@ -5,7 +5,7 @@
 #include "../ASTNode.h"
 #include "../ArithmeticExpression/ArithmeticExpression.h"
 
-class PrintStatement : public Command {
+class PrintStatement : public Statement {
    public:
     ArithmeticExpression* toPrint;
 

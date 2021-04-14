@@ -10,6 +10,7 @@ class Skip;
 class WhileLoop;
 
 class ABinaryOperation;
+class InputCommand;
 class NumericLiteral;
 class VariableRef;
 
@@ -30,6 +31,7 @@ class VisitorBase {
     virtual void visitWhile(WhileLoop* w) = 0;
 
     virtual void visitABinaryOp(ABinaryOperation* o) = 0;
+    virtual void visitInput(InputCommand* i) = 0;
     virtual void visitNumLit(NumericLiteral* l) = 0;
     virtual void visitVarRef(VariableRef* v) = 0;
 

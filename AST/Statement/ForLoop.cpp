@@ -1,8 +1,8 @@
 #include "ForLoop.h"
 
-ForLoop::ForLoop(size_t sourceLocation, Command* initCommand, BoolExpression* condition, Command* incrExpression, Command* loopBody) :
-    Command(sourceLocation, FOR),
-    initExpr(initCommand),
+ForLoop::ForLoop(size_t sourceLocation, Statement* initStatement, BoolExpression* condition, Statement* incrExpression, Statement* loopBody) :
+    Statement(sourceLocation, FOR),
+    initExpr(initStatement),
     condition(condition),
     incrExpression(incrExpression),
     loopBody(loopBody) {}

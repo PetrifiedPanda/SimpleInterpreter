@@ -2,12 +2,12 @@
 
 #include "../ASTNode.h"
 
-class Sequence : public Command {
+class Sequence : public Statement {
    public:
-    Command* first;
-    Command* second;
+    Statement* first;
+    Statement* second;
 
-    Sequence(size_t sourceLocation, Command* first, Command* second);
+    Sequence(size_t sourceLocation, Statement* first, Statement* second);
     ~Sequence() override;
 
     void visit(VisitorBase& v) override;

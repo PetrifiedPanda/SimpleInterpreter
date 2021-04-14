@@ -1,7 +1,7 @@
 #include "Sequence.h"
 
-Sequence::Sequence(size_t sourceLocation, Command* first, Command* second) :
-    Command(sourceLocation, SEQ),
+Sequence::Sequence(size_t sourceLocation, Statement* first, Statement* second) :
+    Statement(sourceLocation, SEQ),
     first(first),
     second(second) {}
 

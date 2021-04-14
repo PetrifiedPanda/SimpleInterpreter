@@ -1,7 +1,7 @@
 #include "IfStatement.h"
 
-IfStatement::IfStatement(size_t sourceLocation, BoolExpression* condition, Command* ifCom, Command* elseCom) :
-        Command(sourceLocation, IF),
+IfStatement::IfStatement(size_t sourceLocation, BoolExpression* condition, Statement* ifCom, Statement* elseCom) :
+        Statement(sourceLocation, IF),
         condition(condition),
         ifCom(ifCom),
         elseCom(elseCom) {}

@@ -1,7 +1,7 @@
 #include "PrintStatement.h"
 
 PrintStatement::PrintStatement(size_t sourceLocation, ArithmeticExpression* toPrint) :
-        Command(sourceLocation, PRINT),
+        Statement(sourceLocation, PRINT),
         toPrint(toPrint) {}
     
 PrintStatement::~PrintStatement() {

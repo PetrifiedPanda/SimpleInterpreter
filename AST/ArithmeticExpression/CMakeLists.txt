@@ -4,6 +4,7 @@ cmake_policy(SET CMP0076 NEW)
 
 set(Sources 
     ABinaryOperation.cpp
+    InputCommand.cpp
     NumericLiteral.cpp
     VariableRef.cpp
 )

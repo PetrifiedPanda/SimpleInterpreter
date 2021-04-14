@@ -1,7 +1,7 @@
 #include "Assignment.h"
 
 Assignment::Assignment(size_t sourceLocation, std::string&& varname, ArithmeticExpression* valueExpression) : 
-        Command(sourceLocation, ASSIGN), 
+        Statement(sourceLocation, ASSIGN), 
         varname(std::move(varname)), 
         valueExpression(valueExpression) {}
 

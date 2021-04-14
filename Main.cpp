@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
             std::list<Token> tokens = tokenize(command);
             Parser parser(command, std::move(tokens));
             try {
-                std::unique_ptr<Command> com(parser.parseSequence());
+                std::unique_ptr<Statement> com(parser.parseSequence());
                 Visitor visitor(command, state);
                 com->visit(visitor);
                 com->execute(state);
@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
                 std::list<Token> tokens = tokenize(command);
                 Parser parser(command, std::move(tokens));
                 try {
-                    std::unique_ptr<Command> com(parser.parseSequence());
+                    std::unique_ptr<Statement> com(parser.parseSequence());
                     Visitor visitor(command, state);
                     com->visit(visitor);
                     com->execute(state);
