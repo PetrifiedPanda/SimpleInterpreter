@@ -10,6 +10,6 @@ class SyntaxError : public InterpreterError {
     Token::Type got_;
 
    public:
-    SyntaxError(const std::string& command, size_t sourceLocation, std::initializer_list<Token::Type> expected, Token::Type got);
-    SyntaxError(const std::string& command, size_t sourceLocation, Token::Type expected, Token::Type got);
+    SyntaxError(const std::string& command, size_t source_location, std::initializer_list<Token::Type> expected, Token::Type got);
+    SyntaxError(const std::string& command, size_t source_location, Token::Type expected, Token::Type got);
 };

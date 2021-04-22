@@ -7,7 +7,7 @@ class Sequence : public Statement {
     Statement* first;
     Statement* second;
 
-    Sequence(size_t sourceLocation, Statement* first, Statement* second);
+    Sequence(size_t source_location, Statement* first, Statement* second);
     ~Sequence() override;
 
     void visit(VisitorBase& v) override;

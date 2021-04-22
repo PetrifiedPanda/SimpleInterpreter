@@ -6,14 +6,14 @@
 class IfStatement : public Statement {
    public:
     BoolExpression* condition;
-    Statement* ifCom;
-    Statement* elseCom;
+    Statement* if_com;
+    Statement* else_com;
 
-    IfStatement(size_t sourceLocation, BoolExpression* condition, Statement* ifCom, Statement* elseCom);
+    IfStatement(size_t source_location, BoolExpression* condition, Statement* if_com, Statement* else_com);
     ~IfStatement() override;
 
     void visit(VisitorBase& v) override;
     void execute(State& state) const override;
 
-    bool hasElse() const;
+    bool has_else() const;
 };

@@ -21,24 +21,24 @@ class Negation;
 
 class VisitorBase {
    public:
-    virtual void visitAssignment(Assignment* a) = 0;
-    virtual void visitDoWhile(DoWhileLoop* l) = 0;
-    virtual void visitForLoop(ForLoop* l) = 0;
-    virtual void visitIf(IfStatement* i) = 0;
-    virtual void visitPrint(PrintStatement* p) = 0;
-    virtual void visitSequence(Sequence* s) = 0;
-    virtual void visitSkip(Skip* s) = 0;
-    virtual void visitWhile(WhileLoop* w) = 0;
+    virtual void visit_assignment(Assignment* a) = 0;
+    virtual void visit_do_while(DoWhileLoop* l) = 0;
+    virtual void visit_for_loop(ForLoop* l) = 0;
+    virtual void visit_if(IfStatement* i) = 0;
+    virtual void visit_print(PrintStatement* p) = 0;
+    virtual void visit_sequence(Sequence* s) = 0;
+    virtual void visit_skip(Skip* s) = 0;
+    virtual void visit_while(WhileLoop* w) = 0;
 
-    virtual void visitABinaryOp(ABinaryOperation* o) = 0;
-    virtual void visitInput(InputCommand* i) = 0;
-    virtual void visitNumLit(NumericLiteral* l) = 0;
-    virtual void visitVarRef(VariableRef* v) = 0;
+    virtual void visit_a_binary_op(ABinaryOperation* o) = 0;
+    virtual void visit_input(InputCommand* i) = 0;
+    virtual void visit_num_lit(NumericLiteral* l) = 0;
+    virtual void visit_var_ref(VariableRef* v) = 0;
 
-    virtual void visitBBinaryOp(BBinaryOperation* o) = 0;
-    virtual void visitBoolLit(BoolLiteral* l) = 0;
-    virtual void visitComp(Comparision* c) = 0;
-    virtual void visitNeg(Negation* n) = 0;
+    virtual void visit_b_binary_op(BBinaryOperation* o) = 0;
+    virtual void visit_bool_lit(BoolLiteral* l) = 0;
+    virtual void visit_comp(Comparision* c) = 0;
+    virtual void visit_neg(Negation* n) = 0;
 
 };
 

@@ -1,23 +1,23 @@
 #include "WhileLoop.h"
 
-WhileLoop::WhileLoop(size_t sourceLocation, BoolExpression* condition, Statement* loopBody) :
-    Statement(sourceLocation, WHILE),
+WhileLoop::WhileLoop(size_t source_location, BoolExpression* condition, Statement* loop_body) :
+    Statement(source_location, WHILE),
     condition(condition),
-    loopBody(loopBody) {}
+    loop_body(loop_body) {}
 
 WhileLoop::~WhileLoop() {
     delete condition;
-    delete loopBody;
+    delete loop_body;
 } 
 
 void WhileLoop::visit(VisitorBase& v) {
-    v.visitWhile(this);
+    v.visit_while(this);
 }
 
 void WhileLoop::execute(State& state) const {
     bool cond = condition->evaluate(state);
     while (cond) {
-        loopBody->execute(state);
+        loop_body->execute(state);
         cond = condition->evaluate(state);
     }
 }

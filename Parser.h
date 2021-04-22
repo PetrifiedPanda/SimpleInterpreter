@@ -14,15 +14,16 @@ class Parser {
     Parser();
     Parser(const std::string& command, std::list<Token>&& tokens);
 
-    void nextToken();
+    void next_token();
     void accept(Token::Type kind);
-    void acceptIt();
+    void accept_it();
 
-    Statement* parseSequence();
-    Statement* parseCommand();
-    Statement* parseSingleOrCompoundStatement();
-    ArithmeticExpression* parseArithmeticExpression();
-    BoolExpression* parseBoolExpression();
-
-    bool nextIsLogicalOp() const;
+    Statement* parse_sequence();
+    Statement* parse_command();
+    Statement* parse_single_or_compound_statement();
+    ArithmeticExpression* parse_arithmetic_expression();
+    BoolExpression* parse_bool_expression();
+   
+   private:
+    bool next_is_logical_op() const;
 };

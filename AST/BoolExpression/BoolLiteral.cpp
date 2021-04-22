@@ -1,11 +1,11 @@
 #include "BoolLiteral.h"
 
-BoolLiteral::BoolLiteral(size_t sourceLocation, bool value) :
-        BoolExpression(sourceLocation, LIT),
+BoolLiteral::BoolLiteral(size_t source_location, bool value) :
+        BoolExpression(source_location, LIT),
         value(value) {}
 
 void BoolLiteral::visit(VisitorBase& v) {
-    v.visitBoolLit(this);
+    v.visit_bool_lit(this);
 }
 
 bool BoolLiteral::evaluate(const State& state) const {

@@ -1,28 +1,28 @@
 #include "ForLoop.h"
 
-ForLoop::ForLoop(size_t sourceLocation, Statement* initStatement, BoolExpression* condition, Statement* incrExpression, Statement* loopBody) :
-    Statement(sourceLocation, FOR),
-    initExpr(initStatement),
+ForLoop::ForLoop(size_t source_location, Statement* initStatement, BoolExpression* condition, Statement* incr_expr, Statement* loop_body) :
+    Statement(source_location, FOR),
+    init_expr(initStatement),
     condition(condition),
-    incrExpression(incrExpression),
-    loopBody(loopBody) {}
+    incr_expr(incr_expr),
+    loop_body(loop_body) {}
 
 ForLoop::~ForLoop() {
-    delete initExpr;
+    delete init_expr;
     delete condition;
-    delete incrExpression;
-    delete loopBody;
+    delete incr_expr;
+    delete loop_body;
 }
 
 void ForLoop::visit(VisitorBase& v) {
-    v.visitForLoop(this);
+    v.visit_for_loop(this);
 }
 
 void ForLoop::execute(State& state) const {
-    initExpr->execute(state);
+    init_expr->execute(state);
 
     while (condition->evaluate(state)) {
-        loopBody->execute(state);
-        incrExpression->execute(state);
+        loop_body->execute(state);
+        incr_expr->execute(state);
     }
 }

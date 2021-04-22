@@ -4,15 +4,15 @@
 
 class BBinaryOperation : public BoolExpression {
    public:
-    BoolExpression* leftOperand;
-    BoolExpression* rightOperand;
+    BoolExpression* left_operand;
+    BoolExpression* right_operand;
 
     enum LogOp {
         AND, OR
     };
     LogOp op;
     
-    BBinaryOperation(size_t sourceLocation, BoolExpression* leftOperand, BoolExpression* rightOperand, LogOp op);
+    BBinaryOperation(size_t source_location, BoolExpression* left_operand, BoolExpression* right_operand, LogOp op);
     ~BBinaryOperation() override;
 
     void visit(VisitorBase& v) override;

@@ -5,15 +5,15 @@
 
 class Comparision : public BoolExpression {
    public:
-    ArithmeticExpression* leftOperand;
-    ArithmeticExpression* rightOperand;
+    ArithmeticExpression* left_operand;
+    ArithmeticExpression* right_operand;
 
     enum CompOp {
         LEQ, EQ
     };
     CompOp op;
 
-    Comparision(size_t sourceLocation, ArithmeticExpression* leftOperand, ArithmeticExpression* rightOperand, CompOp op);
+    Comparision(size_t source_location, ArithmeticExpression* left_operand, ArithmeticExpression* right_operand, CompOp op);
     ~Comparision() override;
 
     void visit(VisitorBase& v) override;

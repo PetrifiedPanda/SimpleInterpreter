@@ -1,23 +1,23 @@
 #include "BBinaryOperation.h"
 
-BBinaryOperation::BBinaryOperation(size_t sourceLocation, BoolExpression* leftOperand, BoolExpression* rightOperand, LogOp op) :
-    BoolExpression(sourceLocation, BINOP),
-    leftOperand(leftOperand),
-    rightOperand(rightOperand),
+BBinaryOperation::BBinaryOperation(size_t source_location, BoolExpression* leftOperand, BoolExpression* right_operand, LogOp op) :
+    BoolExpression(source_location, BINOP),
+    left_operand(leftOperand),
+    right_operand(right_operand),
     op(op) {}
     
 BBinaryOperation::~BBinaryOperation() {
-    delete leftOperand;
-    delete rightOperand;
+    delete left_operand;
+    delete right_operand;
 }
 
 void BBinaryOperation::visit(VisitorBase& v) {
-    v.visitBBinaryOp(this);
+    v.visit_b_binary_op(this);
 }
 
 bool BBinaryOperation::evaluate(const State& state) const {
-    bool left = leftOperand->evaluate(state);
-    bool right = rightOperand->evaluate(state);
+    bool left = left_operand->evaluate(state);
+    bool right = right_operand->evaluate(state);
 
     switch (op) {
         case AND:

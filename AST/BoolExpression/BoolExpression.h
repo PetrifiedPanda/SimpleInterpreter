@@ -10,7 +10,7 @@ class BoolExpression : public ASTNode {
     };
     
     const Type type;
-    BoolExpression(size_t sourceLocation, Type type) : ASTNode(sourceLocation), type(type) {}
+    BoolExpression(size_t source_location, Type type) : ASTNode(source_location), type(type) {}
 
     virtual bool evaluate(const State& state) const = 0;
 };

@@ -1,18 +1,18 @@
 #include "PrintStatement.h"
 
-PrintStatement::PrintStatement(size_t sourceLocation, ArithmeticExpression* toPrint) :
-        Statement(sourceLocation, PRINT),
-        toPrint(toPrint) {}
+PrintStatement::PrintStatement(size_t source_location, ArithmeticExpression* to_print) :
+        Statement(source_location, PRINT),
+        to_print(to_print) {}
     
 PrintStatement::~PrintStatement() {
-    delete toPrint;
+    delete to_print;
 }
 
 void PrintStatement::visit(VisitorBase& v) {
-    v.visitPrint(this);
+    v.visit_print(this);
 }
 
 void PrintStatement::execute(State& state) const {
-    int val = toPrint->evaluate(state);
+    int val = to_print->evaluate(state);
     std::cout << val << std::endl;
 }

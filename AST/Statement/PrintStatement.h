@@ -7,9 +7,9 @@
 
 class PrintStatement : public Statement {
    public:
-    ArithmeticExpression* toPrint;
+    ArithmeticExpression* to_print;
 
-    PrintStatement(size_t sourceLocation, ArithmeticExpression* toPrint);
+    PrintStatement(size_t source_location, ArithmeticExpression* to_print);
     ~PrintStatement() override;
 
     void visit(VisitorBase& v) override;

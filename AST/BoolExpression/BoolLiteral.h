@@ -6,7 +6,7 @@ class BoolLiteral : public BoolExpression {
     bool value;
 
    public:
-    BoolLiteral(size_t sourceLocation, bool value);
+    BoolLiteral(size_t source_location, bool value);
 
     void visit(VisitorBase& v) override;
 

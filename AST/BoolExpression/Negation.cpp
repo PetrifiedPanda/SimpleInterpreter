@@ -1,7 +1,7 @@
 #include "Negation.h"
 
-Negation::Negation(size_t sourceLocation, BoolExpression* expr) :
-    BoolExpression(sourceLocation, NEG),
+Negation::Negation(size_t source_location, BoolExpression* expr) :
+    BoolExpression(source_location, NEG),
     expr(expr) {}
 
 Negation::~Negation() {
@@ -9,7 +9,7 @@ Negation::~Negation() {
 }
 
 void Negation::visit(VisitorBase& v) {
-    v.visitNeg(this);
+    v.visit_neg(this);
 }
 
 bool Negation::evaluate(const State& state) const {

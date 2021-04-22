@@ -1,19 +1,19 @@
 #include "Assignment.h"
 
-Assignment::Assignment(size_t sourceLocation, std::string&& varname, ArithmeticExpression* valueExpression) : 
-        Statement(sourceLocation, ASSIGN), 
+Assignment::Assignment(size_t source_location, std::string&& varname, ArithmeticExpression* value_expression) : 
+        Statement(source_location, ASSIGN), 
         varname(std::move(varname)), 
-        valueExpression(valueExpression) {}
+        value_expression(value_expression) {}
 
 Assignment::~Assignment() {
-    delete valueExpression;
+    delete value_expression;
 }
 
 void Assignment::visit(VisitorBase& v) {
-    v.visitAssignment(this);
+    v.visit_assignment(this);
 }
 
 void Assignment::execute(State& state) const {
-    int value = valueExpression->evaluate(state);
-    state.writeVariable(varname, value);
+    int value = value_expression->evaluate(state);
+    state.write_variable(varname, value);
 }

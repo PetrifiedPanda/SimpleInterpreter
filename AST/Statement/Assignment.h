@@ -8,9 +8,9 @@
 class Assignment : public Statement {
    public:
     std::string varname;
-    ArithmeticExpression* valueExpression;
+    ArithmeticExpression* value_expression;
 
-    Assignment(size_t sourceLocation, std::string&& varname, ArithmeticExpression* valueExpression); 
+    Assignment(size_t source_location, std::string&& varname, ArithmeticExpression* value_expression); 
     ~Assignment() override;
 
     void visit(VisitorBase& v) override;

@@ -6,9 +6,9 @@
 class DoWhileLoop : public Statement {
   public:
     BoolExpression* condition;
-    Statement* loopBody;
+    Statement* loop_body;
 
-    DoWhileLoop(size_t sourceLocation, BoolExpression* condition, Statement* loopBody);
+    DoWhileLoop(size_t source_location, BoolExpression* condition, Statement* loop_body);
     ~DoWhileLoop() override;
 
     void visit(VisitorBase& v) override;

@@ -1,7 +1,7 @@
 #include "Sequence.h"
 
-Sequence::Sequence(size_t sourceLocation, Statement* first, Statement* second) :
-    Statement(sourceLocation, SEQ),
+Sequence::Sequence(size_t source_location, Statement* first, Statement* second) :
+    Statement(source_location, SEQ),
     first(first),
     second(second) {}
 
@@ -11,7 +11,7 @@ Sequence::~Sequence() {
 }
 
 void Sequence::visit(VisitorBase& v) {
-    v.visitSequence(this);
+    v.visit_sequence(this);
 }
 
 void Sequence::execute(State& state) const {

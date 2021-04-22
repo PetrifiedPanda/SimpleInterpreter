@@ -8,81 +8,81 @@ Visitor::Visitor(const std::string& command, const State& state) : command_(comm
     identifiers_.emplace_front();
 }
 
-void Visitor::visitAssignment(Assignment* a) {
-    a->valueExpression->visit(*this);
+void Visitor::visit_assignment(Assignment* a) {
+    a->value_expression->visit(*this);
     if (!state_.contains(a->varname))
-        addIdentifier(a->varname); // Add identifier after checking valueExpression to make sure it is not used there
+        addIdentifier(a->varname); // Add identifier after checking value_expression to make sure it is not used there
 }
 
-void Visitor::visitDoWhile(DoWhileLoop* l) {
-    l->loopBody->visit(*this);
+void Visitor::visit_do_while(DoWhileLoop* l) {
+    l->loop_body->visit(*this);
     l->condition->visit(*this);
 }
 
-void Visitor::visitForLoop(ForLoop* l) {
-    l->initExpr->visit(*this);
+void Visitor::visit_for_loop(ForLoop* l) {
+    l->init_expr->visit(*this);
     l->condition->visit(*this);
-    l->loopBody->visit(*this);
-    l->incrExpression->visit(*this);
+    l->loop_body->visit(*this);
+    l->incr_expr->visit(*this);
 }
 
-void Visitor::visitIf(IfStatement* i) {
+void Visitor::visit_if(IfStatement* i) {
     i->condition->visit(*this);
-    if (i->hasElse())
-        scopeUnion(i->ifCom, i->elseCom);
+    if (i->has_else())
+        scopeUnion(i->if_com, i->else_com);
 }
 
-void Visitor::visitPrint(PrintStatement* p) {
-    p->toPrint->visit(*this);
+void Visitor::visit_print(PrintStatement* p) {
+    p->to_print->visit(*this);
 }
 
-void Visitor::visitSequence(Sequence* s) {
+void Visitor::visit_sequence(Sequence* s) {
     s->first->visit(*this);
     s->second->visit(*this);
 }
 
-void Visitor::visitSkip(Skip* s) {
+void Visitor::visit_skip(Skip* s) {
 
 }
 
-void Visitor::visitWhile(WhileLoop* w) {
+void Visitor::visit_while(WhileLoop* w) {
     w->condition->visit(*this);
-    w->loopBody->visit(*this);
+    w->loop_body->visit(*this);
 }
 
-void Visitor::visitABinaryOp(ABinaryOperation* o) {
-    o->leftOperand->visit(*this);
-    o->rightOperand->visit(*this);
+void Visitor::visit_a_binary_op(ABinaryOperation* o) {
+    o->left_operand->visit(*this);
+    o->right_operand->visit(*this);
 }
 
-void Visitor::visitInput(InputCommand* i) {
-
-}
-
-void Visitor::visitNumLit(NumericLiteral* l) {
+void Visitor::visit_input(InputCommand* i) {
 
 }
 
-void Visitor::visitVarRef(VariableRef* v) {
+void Visitor::visit_num_lit(NumericLiteral* l) {
+
+}
+
+void Visitor::visit_var_ref(VariableRef* v) {
     if (!contains(v->spelling))
-            throw InterpreterError(command_, v->sourceLocation, "Variable " + v->spelling + " was used in character " + std::to_string(v->sourceLocation) + " before it was initialized");
+            throw InterpreterError(command_, v->source_location, "Variable " + v->spelling + " was used in character " + std::to_string(v->source_location) + " before it was initialized");
 }
 
-void Visitor::visitBBinaryOp(BBinaryOperation* o) {
-    o->leftOperand->visit(*this);
-    o->rightOperand->visit(*this);
+void Visitor::visit_b_binary_op(BBinaryOperation* o) {
+    o->left_operand->visit(*this);
+    o->right_operand->visit(*this);
 }
 
-void Visitor::visitBoolLit(BoolLiteral* l) {
+void Visitor::visit_bool_lit(BoolLiteral* l) {
 
 }
 
-void Visitor::visitComp(Comparision* c) {
-    c->leftOperand->visit(*this);
-    c->rightOperand->visit(*this);
+void Visitor::visit_comp(Comparision* c) {
+    c->left_operand->visit(*this);
+    c->right_operand->visit(*this);
 }
 
-void Visitor::visitNeg(Negation* n) {
+void Visitor::visit_neg(Negation* n) {
     n->expr->visit(*this);
 }
 

@@ -10,7 +10,7 @@ class Statement : public ASTNode {
     };
 
     const Type type;
-    Statement(size_t sourceLocation, Type type) : ASTNode(sourceLocation), type(type) {}
+    Statement(size_t source_location, Type type) : ASTNode(source_location), type(type) {}
 
     virtual void execute(State& state) const = 0;
 };

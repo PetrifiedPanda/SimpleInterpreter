@@ -15,21 +15,21 @@ int main(int argc, char** argv) {
         std::string command;
 
         State state;
-        int lineCount = 1;
+        int line_count = 1;
         while (std::getline(stream, command)) {
             std::list<Token> tokens = tokenize(command);
             Parser parser(command, std::move(tokens));
             try {
-                std::unique_ptr<Statement> com(parser.parseSequence());
+                std::unique_ptr<Statement> com(parser.parse_sequence());
                 Visitor visitor(command, state);
                 com->visit(visitor);
                 com->execute(state);
             } catch (InterpreterError& err) {
-                std::cerr << "Error on line " << lineCount << "\n";
+                std::cerr << "Error on line " << line_count << "\n";
                 std::cerr << err.what() << "\n";
                 break;
             }
-            ++lineCount;
+            ++line_count;
         }
     }
     else {
@@ -43,7 +43,7 @@ int main(int argc, char** argv) {
                 std::list<Token> tokens = tokenize(command);
                 Parser parser(command, std::move(tokens));
                 try {
-                    std::unique_ptr<Statement> com(parser.parseSequence());
+                    std::unique_ptr<Statement> com(parser.parse_sequence());
                     Visitor visitor(command, state);
                     com->visit(visitor);
                     com->execute(state);

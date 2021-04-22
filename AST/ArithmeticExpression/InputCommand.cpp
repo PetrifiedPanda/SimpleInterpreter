@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-InputCommand::InputCommand(size_t sourceLocation) : ArithmeticExpression(sourceLocation, INPUT) {}
+InputCommand::InputCommand(size_t source_location) : ArithmeticExpression(source_location, INPUT) {}
 
 void InputCommand::visit(VisitorBase& v) {
-    v.visitInput(this);
+    v.visit_input(this);
 }
 
 int InputCommand::evaluate(const State& state) const {

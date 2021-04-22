@@ -10,9 +10,9 @@ class State {
 
     void clear();
 
-    void writeVariable(const std::string& varname, int value);
+    void write_variable(const std::string& varname, int value);
 
-    int readVariable(const std::string& varname) const;
+    int read_variable(const std::string& varname) const;
 
     bool contains(const std::string& varname) const;
 };

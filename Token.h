@@ -27,12 +27,12 @@ class Token {
    private:
     std::string spelling_;
     Type type_;
-    size_t sourceLocation_;
+    size_t source_location_;
 
    public:
-    Token() : spelling_(""), type_(INVALID), sourceLocation_(0) {}
-    Token(std::string&& spelling, Type kind) : spelling_(std::move(spelling)), type_(kind), sourceLocation_(0) {}
-    Token(std::string&& spelling, Type kind, size_t sourceLocation) : spelling_(std::move(spelling)), type_(kind), sourceLocation_(sourceLocation) {}
+    Token() : spelling_(""), type_(INVALID), source_location_(0) {}
+    Token(std::string&& spelling, Type kind) : spelling_(std::move(spelling)), type_(kind), source_location_(0) {}
+    Token(std::string&& spelling, Type kind, size_t source_location) : spelling_(std::move(spelling)), type_(kind), source_location_(source_location) {}
 
     const std::string& spelling() const {
         return spelling_;
@@ -42,16 +42,16 @@ class Token {
         return type_;
     }
 
-    size_t sourceLocation() const {
-        return sourceLocation_;
+    size_t source_location() const {
+        return source_location_;
     }
 
-    std::string&& moveSpelling() {
+    std::string&& move_spelling() {
         type_ = INVALID;
         return std::move(spelling_);
     }
 
-    static std::string toString(Type type) {
+    static std::string to_string(Type type) {
         switch (type) {
             case TRUE:
                 return "true";

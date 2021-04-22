@@ -1,23 +1,23 @@
 #include "Comparision.h"
 
-Comparision::Comparision(size_t sourceLocation, ArithmeticExpression* leftOperand, ArithmeticExpression* rightOperand, CompOp op) :
-    BoolExpression(sourceLocation, COMP),
-    leftOperand(leftOperand),
-    rightOperand(rightOperand),
+Comparision::Comparision(size_t source_location, ArithmeticExpression* left_operand, ArithmeticExpression* right_operand, CompOp op) :
+    BoolExpression(source_location, COMP),
+    left_operand(left_operand),
+    right_operand(right_operand),
     op(op) {}
     
 Comparision::~Comparision() {
-    delete leftOperand;
-    delete rightOperand;
+    delete left_operand;
+    delete right_operand;
 }
 
 void Comparision::visit(VisitorBase& v) {
-    v.visitComp(this);
+    v.visit_comp(this);
 }
 
 bool Comparision::evaluate(const State& state) const {
-    int left = leftOperand->evaluate(state);
-    int right = rightOperand->evaluate(state);
+    int left = left_operand->evaluate(state);
+    int right = right_operand->evaluate(state);
 
     switch (op) {
         case LEQ:

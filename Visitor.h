@@ -15,24 +15,24 @@ class Visitor : public VisitorBase {
 
     void clear();
 
-    void visitAssignment(Assignment* a) override;
-    void visitDoWhile(DoWhileLoop* l) override;
-    void visitForLoop(ForLoop* l) override;
-    void visitIf(IfStatement* i) override;
-    void visitPrint(PrintStatement* p) override;
-    void visitSequence(Sequence* s) override;
-    void visitSkip(Skip* s) override;
-    void visitWhile(WhileLoop* w) override;
+    void visit_assignment(Assignment* a) override;
+    void visit_do_while(DoWhileLoop* l) override;
+    void visit_for_loop(ForLoop* l) override;
+    void visit_if(IfStatement* i) override;
+    void visit_print(PrintStatement* p) override;
+    void visit_sequence(Sequence* s) override;
+    void visit_skip(Skip* s) override;
+    void visit_while(WhileLoop* w) override;
 
-    void visitABinaryOp(ABinaryOperation* o) override;
-    void visitInput(InputCommand* i) override;
-    void visitNumLit(NumericLiteral* l) override;
-    void visitVarRef(VariableRef* v) override;
+    void visit_a_binary_op(ABinaryOperation* o) override;
+    void visit_input(InputCommand* i) override;
+    void visit_num_lit(NumericLiteral* l) override;
+    void visit_var_ref(VariableRef* v) override;
 
-    void visitBBinaryOp(BBinaryOperation* o) override;
-    void visitBoolLit(BoolLiteral* l) override;
-    void visitComp(Comparision* c) override;
-    void visitNeg(Negation* n) override;
+    void visit_b_binary_op(BBinaryOperation* o) override;
+    void visit_bool_lit(BoolLiteral* l) override;
+    void visit_comp(Comparision* c) override;
+    void visit_neg(Negation* n) override;
 
    private:
     void addIdentifier(const std::string& varname);

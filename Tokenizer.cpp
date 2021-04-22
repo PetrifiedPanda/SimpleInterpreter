@@ -5,7 +5,7 @@
 #include <cctype>
 
 // Maps reserved words to Token type
-const std::map<std::string, Token::Type> reservedWords = {
+const std::map<std::string, Token::Type> reserved_words = {
     {"true", Token::TRUE},
     {"false", Token::FALSE},
     {"else", Token::ELSE},
@@ -24,13 +24,13 @@ const std::map<std::string, Token::Type> reservedWords = {
     {"input", Token::INPUT}
 };
 
-Token parseMultiCharToken(const std::string& text, size_t start);
+Token parse_multi_char_token(const std::string& text, size_t start);
 
 std::list<Token> tokenize(const std::string& text) {
     std::list<Token> result;
     size_t i = 0;
     size_t size = text.size();
-    bool noIncr = false;
+    bool no_incr = false;
     while (i < size) {
         switch (text[i]) {
             case ' ': {
@@ -87,16 +87,16 @@ std::list<Token> tokenize(const std::string& text) {
                 break;
             }
             default: {
-                Token token = parseMultiCharToken(text, i);
+                Token token = parse_multi_char_token(text, i);
                 i += token.spelling().size();
                 result.push_back(std::move(token));
-                noIncr = true;
+                no_incr = true;
                 break;
             }
         }
 
-        if (noIncr)
-            noIncr = false;
+        if (no_incr)
+            no_incr = false;
         else
             ++i;
     }
@@ -104,7 +104,7 @@ std::list<Token> tokenize(const std::string& text) {
     return result;
 }
 
-bool allDigits(const std::string& str) {
+bool all_digits(const std::string& str) {
     for (char c : str) {
         if (!isdigit(c))
             return false;
@@ -112,21 +112,21 @@ bool allDigits(const std::string& str) {
     return true;
 }  
 
-bool isSingleCharToken(char c) {
+bool is_single_char_token(char c) {
     return c == '(' || c == ')' || c == '+' || c == '-' || c == '*' || c == '/' || c == ';' || c == ':' || c == ' ';
 }
 
-Token parseMultiCharToken(const std::string& text, size_t start) {
+Token parse_multi_char_token(const std::string& text, size_t start) {
     size_t end = start;
-    while (end < text.size() && !isSingleCharToken(text[end]))
+    while (end < text.size() && !is_single_char_token(text[end]))
         ++end;
 
     std::string spelling = text.substr(start, end - start);
 
     Token::Type type;
-    if (reservedWords.count(spelling) != 0)
-        type = reservedWords.at(spelling);
-    else if (allDigits(spelling))
+    if (reserved_words.count(spelling) != 0)
+        type = reserved_words.at(spelling);
+    else if (all_digits(spelling))
         type = Token::NUM;
     else
         type = Token::VARNAME; // TODO: Better name checking for varnames

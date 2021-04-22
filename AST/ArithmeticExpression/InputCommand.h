@@ -4,7 +4,7 @@
 
 class InputCommand : public ArithmeticExpression {
    public:
-    InputCommand(size_t sourceLocation);
+    InputCommand(size_t source_location);
 
     void visit(VisitorBase& v) override;
     int evaluate(const State& state) const override;

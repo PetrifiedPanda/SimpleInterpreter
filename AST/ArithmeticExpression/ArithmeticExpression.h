@@ -10,7 +10,7 @@ class ArithmeticExpression : public ASTNode {
     };
 
     const Type type;
-    ArithmeticExpression(size_t sourceLocation, Type type) : ASTNode(sourceLocation), type(type) {}
+    ArithmeticExpression(size_t source_location, Type type) : ASTNode(source_location), type(type) {}
 
     virtual int evaluate(const State& state) const = 0;
 };

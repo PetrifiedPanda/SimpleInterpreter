@@ -1,24 +1,24 @@
 #include "DoWhileLoop.h"
 
-DoWhileLoop::DoWhileLoop(size_t sourceLocation, BoolExpression* condition, Statement* loopBody) :
-    Statement(sourceLocation, DOWHILE),
+DoWhileLoop::DoWhileLoop(size_t source_location, BoolExpression* condition, Statement* loop_body) :
+    Statement(source_location, DOWHILE),
     condition(condition),
-    loopBody(loopBody) {}
+    loop_body(loop_body) {}
 
 DoWhileLoop::~DoWhileLoop() {
     delete condition;
-    delete loopBody;
+    delete loop_body;
 } 
 
 void DoWhileLoop::visit(VisitorBase& v) {
-    v.visitDoWhile(this);
+    v.visit_do_while(this);
 }
 
 void DoWhileLoop::execute(State& state) const {
-    loopBody->execute(state);
+    loop_body->execute(state);
     bool cond = condition->evaluate(state);
     while (cond) {
-        loopBody->execute(state);
+        loop_body->execute(state);
         cond = condition->evaluate(state);
     }
 }

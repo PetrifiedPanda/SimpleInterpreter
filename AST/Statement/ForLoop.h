@@ -5,12 +5,12 @@
 
 class ForLoop : public Statement {
    public:
-    Statement* initExpr;
+    Statement* init_expr;
     BoolExpression* condition;
-    Statement* incrExpression;
-    Statement* loopBody;
+    Statement* incr_expr;
+    Statement* loop_body;
 
-    ForLoop(size_t sourceLocation, Statement* initStatement, BoolExpression* condition, Statement* incrExpression, Statement* loopBody);
+    ForLoop(size_t source_location, Statement* init_expr, BoolExpression* condition, Statement* incr_expr, Statement* loop_body);
     ~ForLoop() override;
 
     void visit(VisitorBase& v) override;

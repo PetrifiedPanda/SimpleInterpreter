@@ -1,29 +1,29 @@
 #include "IfStatement.h"
 
-IfStatement::IfStatement(size_t sourceLocation, BoolExpression* condition, Statement* ifCom, Statement* elseCom) :
-        Statement(sourceLocation, IF),
+IfStatement::IfStatement(size_t source_location, BoolExpression* condition, Statement* if_com, Statement* else_com) :
+        Statement(source_location, IF),
         condition(condition),
-        ifCom(ifCom),
-        elseCom(elseCom) {}
+        if_com(if_com),
+        else_com(else_com) {}
     
 IfStatement::~IfStatement() {
     delete condition;
-    delete ifCom;
-    delete elseCom;
+    delete if_com;
+    delete else_com;
 }
 
 void IfStatement::visit(VisitorBase& v) {
-    v.visitIf(this);
+    v.visit_if(this);
 }
 
 void IfStatement::execute(State& state) const {
     bool cond = condition->evaluate(state);
     if (cond)
-        ifCom->execute(state);
-    else if (hasElse())
-        elseCom->execute(state);
+        if_com->execute(state);
+    else if (has_else())
+        else_com->execute(state);
 }
 
-bool IfStatement::hasElse() const {
-    return elseCom != nullptr;
+bool IfStatement::has_else() const {
+    return else_com != nullptr;
 }

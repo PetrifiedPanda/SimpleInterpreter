@@ -4,15 +4,15 @@
 
 class ABinaryOperation : public ArithmeticExpression {
    public:
-    ArithmeticExpression* leftOperand;
-    ArithmeticExpression* rightOperand;
+    ArithmeticExpression* left_operand;
+    ArithmeticExpression* right_operand;
     
     enum ArithOp {
         ADD, SUB, MUL, DIV
     };
     ArithOp op;
 
-    ABinaryOperation(size_t sourceLocation, ArithmeticExpression* leftOperand, ArithmeticExpression* rightOperand, ArithOp op);
+    ABinaryOperation(size_t source_location, ArithmeticExpression* left_operand, ArithmeticExpression* right_operand, ArithOp op);
     ~ABinaryOperation() override;
 
     void visit(VisitorBase& v) override;
