@@ -11,7 +11,7 @@ Visitor::Visitor(const std::string& command, const State& state) : command_(comm
 void Visitor::visit_assignment(Assignment* a) {
     a->value_expression->visit(*this);
     if (!state_.contains(a->varname))
-        addIdentifier(a->varname); // Add identifier after checking value_expression to make sure it is not used there
+        add_identifier(a->varname); // Add identifier after checking value_expression to make sure it is not used there
 }
 
 void Visitor::visit_do_while(DoWhileLoop* l) {
@@ -29,7 +29,7 @@ void Visitor::visit_for_loop(ForLoop* l) {
 void Visitor::visit_if(IfStatement* i) {
     i->condition->visit(*this);
     if (i->has_else())
-        scopeUnion(i->if_com, i->else_com);
+        scope_union(i->if_com, i->else_com);
 }
 
 void Visitor::visit_print(PrintStatement* p) {
@@ -91,7 +91,7 @@ void Visitor::clear() {
     identifiers_.front().clear();
 }
 
-void Visitor::addIdentifier(const std::string& varname) {
+void Visitor::add_identifier(const std::string& varname) {
     for (const std::list<std::string>& lst : identifiers_)
         for (const std::string& item : lst)
             if (item == varname)
@@ -115,7 +115,7 @@ bool Visitor::contains(const std::string& varname) const {
 }
 
 // Only keep the variables that exist in the scopes from both nodes
-void Visitor::scopeUnion(Statement* first, Statement* second) {
+void Visitor::scope_union(Statement* first, Statement* second) {
     identifiers_.emplace_front();
     first->visit(*this);
     std::list<std::string> oldScope = std::move(identifiers_.front());

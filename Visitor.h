@@ -35,9 +35,9 @@ class Visitor : public VisitorBase {
     void visit_neg(Negation* n) override;
 
    private:
-    void addIdentifier(const std::string& varname);
+    void add_identifier(const std::string& varname);
 
     bool contains(const std::string& varname) const;
 
-    void scopeUnion(Statement* first, Statement* second);
+    void scope_union(Statement* first, Statement* second);
 };
