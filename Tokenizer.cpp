@@ -10,6 +10,9 @@ const std::map<std::string, Token::Type> reserved_words = {
     {"false", Token::FALSE},
     {"else", Token::ELSE},
     {"<=", Token::LEQ},
+    {"<", Token::LT},
+    {">=", Token::GEQ},
+    {"<=", Token::GT},
     {"not", Token::NOT},
     {"and", Token::AND},
     {"&&", Token::AND},
@@ -63,7 +66,12 @@ std::list<Token> tokenize(const std::string& text) {
                 break;
             }
             case '!': {
-                result.emplace_back("!", Token::NOT, i);
+                if (i + 1 < text.size() && text[i + 1] == '=') {
+                    result.emplace_back("!=", Token::NEQ, i);
+                    ++i;
+                } else {
+                    result.emplace_back("!", Token::NOT, i);
+                }
                 break;
             }
             case ';': {

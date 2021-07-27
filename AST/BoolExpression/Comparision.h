@@ -9,7 +9,7 @@ class Comparision : public BoolExpression {
     ArithmeticExpression* right_operand;
 
     enum CompOp {
-        LEQ, EQ
+        LEQ, LT, GEQ, GT, EQ, NEQ
     };
     CompOp op;
 

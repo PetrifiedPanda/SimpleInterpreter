@@ -20,11 +20,23 @@ bool Comparision::evaluate(const State& state) const {
     int right = right_operand->evaluate(state);
 
     switch (op) {
-        case LEQ:
-            return left <= right;
-            
         case EQ:
             return left == right;
+
+        case NEQ:
+            return left != right;
+
+        case LEQ:
+            return left <= right;
+        
+        case LT:
+            return left < right;
+        
+        case GEQ:
+            return left >= right;
+        
+        case GT:
+            return left > right;
     }
     return false;
 }

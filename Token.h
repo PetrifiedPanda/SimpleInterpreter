@@ -10,7 +10,8 @@ class Token {
         LBRACKET, RBRACKET,
 
         ADD, SUB, MUL, DIV,
-        EQ, LEQ, NOT, AND, OR,
+        EQ, NEQ, LEQ, LT, GEQ, GT,
+        NOT, AND, OR,
 
         ASSIGN, SEMICOLON, 
 

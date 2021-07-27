@@ -233,12 +233,39 @@ BoolExpression* Parser::parse_bool_expression() {
             } else {
                 ArithmeticExpression* left = parse_arithmetic_expression();
                 Comparision::CompOp op;
-                if (currentToken_.type() == Token::EQ) {
-                    accept_it();
-                    op = Comparision::EQ;
-                } else {
-                    accept(Token::LEQ);
-                    op = Comparision::LEQ;
+                switch (currentToken_.type()) {
+                    case Token::EQ: {
+                        accept_it();
+                        op = Comparision::EQ;
+                        break;
+                    } 
+                    case Token::NEQ: {
+                        accept_it();
+                        op = Comparision::NEQ;
+                        break;
+                    } 
+                    case Token::LEQ: {
+                        accept_it();
+                        op = Comparision::LEQ;
+                        break;
+                    } 
+                    case Token::LT: {
+                        accept_it();
+                        op = Comparision::LT;
+                        break;
+                    } 
+                    case Token::GEQ: {
+                        accept_it();
+                        op = Comparision::GEQ;
+                        break;
+                    } 
+                    case Token::GT: {
+                        accept_it();
+                        op = Comparision::GT;
+                        break;
+                    }
+                    default:
+                        throw SyntaxError(command_, currentToken_.source_location(), {Token::EQ, Token::NEQ, Token::LEQ, Token::LT, Token::GEQ, Token::GT}, currentToken_.type());
                 }
                 ArithmeticExpression* right = parse_arithmetic_expression();
                 accept(Token::RBRACKET);

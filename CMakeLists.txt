@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 99)
 
 set(This Interpreter)
 
-project(${This} CXX)
+project(${This} LANGUAGES CXX)
 
 set(Sources
     Main.cpp
