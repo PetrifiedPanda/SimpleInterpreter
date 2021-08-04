@@ -4,7 +4,7 @@
 
 #include "Error/InterpreterError.h"
 
-Visitor::Visitor(const std::string& command, const State& state) : command_(command), identifiers_(), state_(state) {
+Visitor::Visitor(const std::string& command, const State& state) : command_{command}, identifiers_{}, state_{state} {
     identifiers_.emplace_front();
 }
 

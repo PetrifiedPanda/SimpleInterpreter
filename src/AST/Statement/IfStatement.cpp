@@ -1,10 +1,10 @@
 #include "AST/Statement/IfStatement.h"
 
 IfStatement::IfStatement(size_t source_location, BoolExpression* condition, Statement* if_com, Statement* else_com) :
-        Statement(source_location, IF),
-        condition(condition),
-        if_com(if_com),
-        else_com(else_com) {}
+    Statement{source_location, IF},
+    condition{condition},
+    if_com{if_com},
+    else_com{else_com} {}
     
 IfStatement::~IfStatement() {
     delete condition;

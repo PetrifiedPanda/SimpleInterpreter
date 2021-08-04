@@ -31,9 +31,9 @@ class Token {
     size_t source_location_;
 
    public:
-    Token() : spelling_(""), type_(INVALID), source_location_(0) {}
-    Token(std::string&& spelling, Type kind) : spelling_(std::move(spelling)), type_(kind), source_location_(0) {}
-    Token(std::string&& spelling, Type kind, size_t source_location) : spelling_(std::move(spelling)), type_(kind), source_location_(source_location) {}
+    Token() : spelling_{}, type_{INVALID}, source_location_{0} {}
+    Token(std::string&& spelling, Type kind) : spelling_{std::move(spelling)}, type_{kind}, source_location_{0} {}
+    Token(std::string&& spelling, Type kind, size_t source_location) : spelling_{std::move(spelling)}, type_{kind}, source_location_{source_location} {}
 
     const std::string& spelling() const {
         return spelling_;

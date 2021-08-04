@@ -1,10 +1,10 @@
 #include "AST/BoolExpression/BBinaryOperation.h"
 
-BBinaryOperation::BBinaryOperation(size_t source_location, BoolExpression* leftOperand, BoolExpression* right_operand, LogOp op) :
-    BoolExpression(source_location, BINOP),
-    left_operand(leftOperand),
-    right_operand(right_operand),
-    op(op) {}
+BBinaryOperation::BBinaryOperation(size_t source_location, BoolExpression* left_operand, BoolExpression* right_operand, LogOp op) :
+    BoolExpression{source_location, BINOP},
+    left_operand{left_operand},
+    right_operand{right_operand},
+    op{op} {}
     
 BBinaryOperation::~BBinaryOperation() {
     delete left_operand;

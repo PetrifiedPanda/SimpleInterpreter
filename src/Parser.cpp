@@ -4,27 +4,27 @@
 
 #include "Error/SyntaxError.h"
 
-Parser::Parser(const std::string& command, std::list<Token>&& tokens) : command_(command), tokens_(std::move(tokens)), currentToken_() {
+Parser::Parser(const std::string& command, std::list<Token>&& tokens) : command_{command}, tokens_{std::move(tokens)}, current_token_{} {
     if (!tokens_.empty()) {
-        currentToken_ = std::move(*tokens_.begin());
+        current_token_ = std::move(*tokens_.begin());
         tokens_.pop_front();
     }
 }
 
 void Parser::next_token() {
     if (tokens_.empty())
-        currentToken_ = Token();
+        current_token_ = Token();
     else {
-        currentToken_ = std::move(*tokens_.begin());
+        current_token_ = std::move(*tokens_.begin());
         tokens_.pop_front();
     }
 }
 
 void Parser::accept(Token::Type expected) {
-    if (currentToken_.type() == expected)
+    if (current_token_.type() == expected)
         next_token();
     else
-        throw SyntaxError(command_, currentToken_.source_location(), expected, currentToken_.type());
+        throw SyntaxError(command_, current_token_.source_location(), expected, current_token_.type());
 }
 
 void Parser::accept_it() {
@@ -34,7 +34,7 @@ void Parser::accept_it() {
 Statement* Parser::parse_sequence() {
     Statement* currentResult = nullptr;
     do {
-        if (currentToken_.type() == Token::SEMICOLON)
+        if (current_token_.type() == Token::SEMICOLON)
             accept_it();
 
         Statement* newResult = parse_command();
@@ -44,14 +44,14 @@ Statement* Parser::parse_sequence() {
         else
             currentResult = new Sequence(currentResult->source_location, currentResult, newResult);
             
-    } while (currentToken_.type() == Token::SEMICOLON);
+    } while (current_token_.type() == Token::SEMICOLON);
 
     return currentResult;
 }
 
 Statement* Parser::parse_command() {
-    size_t source_location = currentToken_.source_location();
-    switch (currentToken_.type()) {
+    size_t source_location = current_token_.source_location();
+    switch (current_token_.type()) {
 
         case Token::SKIP: {
             accept_it();
@@ -59,7 +59,7 @@ Statement* Parser::parse_command() {
         }
     
         case Token::VARNAME: {
-            std::string varname = std::move(currentToken_.move_spelling());
+            std::string varname = std::move(current_token_.move_spelling());
             accept_it();
             accept(Token::ASSIGN);
             ArithmeticExpression* val = parse_arithmetic_expression();
@@ -73,7 +73,7 @@ Statement* Parser::parse_command() {
             Statement* if_com = parse_single_or_compound_statement();
 
             Statement* else_com = nullptr;
-            if (currentToken_.type() == Token::ELSE) {
+            if (current_token_.type() == Token::ELSE) {
                 accept_it();
                 else_com = parse_single_or_compound_statement();
             }
@@ -119,12 +119,12 @@ Statement* Parser::parse_command() {
         }
 
         default:
-            throw SyntaxError(command_, currentToken_.source_location(), {Token::VARNAME, Token::IF, Token::WHILE, Token::PRINT}, currentToken_.type());
+            throw SyntaxError(command_, current_token_.source_location(), {Token::VARNAME, Token::IF, Token::WHILE, Token::PRINT}, current_token_.type());
     }
 }
 
 Statement* Parser::parse_single_or_compound_statement() {
-    if (currentToken_.type() == Token::LBRACE) {
+    if (current_token_.type() == Token::LBRACE) {
         accept_it();
         Statement* seq = parse_sequence();
         accept(Token::RBRACE);
@@ -135,16 +135,16 @@ Statement* Parser::parse_single_or_compound_statement() {
 
 
 ArithmeticExpression* Parser::parse_arithmetic_expression() {
-    size_t source_location = currentToken_.source_location();
-    switch (currentToken_.type()) {
+    size_t source_location = current_token_.source_location();
+    switch (current_token_.type()) {
         case Token::NUM: {
-            int value = atoi(currentToken_.spelling().c_str());
+            int value = atoi(current_token_.spelling().c_str());
             accept_it();
             return new NumericLiteral(source_location, value);
         }
 
         case Token::VARNAME: {
-            std::string varname = std::move(currentToken_.move_spelling());
+            std::string varname = std::move(current_token_.move_spelling());
             accept_it();
             return new VariableRef(source_location, std::move(varname));
         }
@@ -153,7 +153,7 @@ ArithmeticExpression* Parser::parse_arithmetic_expression() {
             accept_it();
             ArithmeticExpression* left = parse_arithmetic_expression();
             ABinaryOperation::ArithOp op;
-            switch (currentToken_.type()) {
+            switch (current_token_.type()) {
                 case Token::ADD:
                     accept_it();
                     op = ABinaryOperation::ADD;
@@ -175,7 +175,7 @@ ArithmeticExpression* Parser::parse_arithmetic_expression() {
                     break;
 
                 default:
-                    throw SyntaxError(command_, currentToken_.source_location(), {Token::ADD, Token::SUB, Token::MUL, Token::DIV}, currentToken_.type());
+                    throw SyntaxError(command_, current_token_.source_location(), {Token::ADD, Token::SUB, Token::MUL, Token::DIV}, current_token_.type());
             }
             ArithmeticExpression* right = parse_arithmetic_expression();
             accept(Token::RBRACKET);
@@ -190,15 +190,15 @@ ArithmeticExpression* Parser::parse_arithmetic_expression() {
         }
         
         default:
-            throw SyntaxError(command_, currentToken_.source_location(), {Token::NUM, Token::VARNAME, Token::LBRACKET}, currentToken_.type());
+            throw SyntaxError(command_, current_token_.source_location(), {Token::NUM, Token::VARNAME, Token::LBRACKET}, current_token_.type());
             break;
 
     }
 }
 
 BoolExpression* Parser::parse_bool_expression() {
-    size_t source_location = currentToken_.source_location();
-    switch (currentToken_.type()) {
+    size_t source_location = current_token_.source_location();
+    switch (current_token_.type()) {
         case Token::TRUE:
             accept_it();
             return new BoolLiteral(source_location, true);
@@ -216,7 +216,7 @@ BoolExpression* Parser::parse_bool_expression() {
             if (next_is_logical_op()) {
                 BoolExpression* left = parse_bool_expression();
                 BBinaryOperation::LogOp op;
-                if (currentToken_.type() == Token::AND) {
+                if (current_token_.type() == Token::AND) {
                     accept_it();
                     op = BBinaryOperation::AND;
                 } else {
@@ -229,7 +229,7 @@ BoolExpression* Parser::parse_bool_expression() {
             } else {
                 ArithmeticExpression* left = parse_arithmetic_expression();
                 Comparision::CompOp op;
-                switch (currentToken_.type()) {
+                switch (current_token_.type()) {
                     case Token::EQ: {
                         accept_it();
                         op = Comparision::EQ;
@@ -261,7 +261,7 @@ BoolExpression* Parser::parse_bool_expression() {
                         break;
                     }
                     default:
-                        throw SyntaxError(command_, currentToken_.source_location(), {Token::EQ, Token::NEQ, Token::LEQ, Token::LT, Token::GEQ, Token::GT}, currentToken_.type());
+                        throw SyntaxError(command_, current_token_.source_location(), {Token::EQ, Token::NEQ, Token::LEQ, Token::LT, Token::GEQ, Token::GT}, current_token_.type());
                 }
                 ArithmeticExpression* right = parse_arithmetic_expression();
                 accept(Token::RBRACKET);
@@ -269,19 +269,19 @@ BoolExpression* Parser::parse_bool_expression() {
             }
 
         default:
-            throw SyntaxError(command_, currentToken_.source_location(), {Token::TRUE, Token::FALSE, Token::NOT, Token::LBRACKET}, currentToken_.type());
+            throw SyntaxError(command_, current_token_.source_location(), {Token::TRUE, Token::FALSE, Token::NOT, Token::LBRACKET}, current_token_.type());
     }
 }
 
 // Determines whether the current bracket was for a logical operator or a comparision when parsing a BoolExpression
 bool Parser::next_is_logical_op() const {
     // Catch case where there are no brackets
-    if (currentToken_.type() == Token::TRUE || currentToken_.type() == Token::FALSE)
+    if (current_token_.type() == Token::TRUE || current_token_.type() == Token::FALSE)
         return true;
-    else if (currentToken_.type() == Token::VARNAME || currentToken_.type() == Token::NUM)
+    else if (current_token_.type() == Token::VARNAME || current_token_.type() == Token::NUM)
         return false;
 
-    int openingBracketCount = 1; // currentToken_.type() must be LBRACKET
+    int openingBracketCount = 1; // current_token_.type() must be LBRACKET
     size_t lastOpenedBracket = -1;
 
     auto it = tokens_.begin();

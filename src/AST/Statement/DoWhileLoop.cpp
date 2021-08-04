@@ -1,9 +1,9 @@
 #include "AST/Statement/DoWhileLoop.h"
 
 DoWhileLoop::DoWhileLoop(size_t source_location, BoolExpression* condition, Statement* loop_body) :
-    Statement(source_location, DOWHILE),
-    condition(condition),
-    loop_body(loop_body) {}
+    Statement{source_location, DOWHILE},
+    condition{condition},
+    loop_body{loop_body} {}
 
 DoWhileLoop::~DoWhileLoop() {
     delete condition;

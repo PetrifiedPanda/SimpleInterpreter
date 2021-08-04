@@ -8,7 +8,7 @@
 class Parser {
     const std::string& command_;
     std::list<Token> tokens_;
-    Token currentToken_;
+    Token current_token_;
 
    public:
     Parser(const std::string& command, std::list<Token>&& tokens);

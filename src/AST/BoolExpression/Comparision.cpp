@@ -1,10 +1,10 @@
 #include "AST/BoolExpression/Comparision.h"
 
 Comparision::Comparision(size_t source_location, ArithmeticExpression* left_operand, ArithmeticExpression* right_operand, CompOp op) :
-    BoolExpression(source_location, COMP),
-    left_operand(left_operand),
-    right_operand(right_operand),
-    op(op) {}
+    BoolExpression{source_location, COMP},
+    left_operand{left_operand},
+    right_operand{right_operand},
+    op{op} {}
     
 Comparision::~Comparision() {
     delete left_operand;

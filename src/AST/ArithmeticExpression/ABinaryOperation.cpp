@@ -1,10 +1,10 @@
 #include "AST/ArithmeticExpression/ABinaryOperation.h"
 
 ABinaryOperation::ABinaryOperation(size_t source_location, ArithmeticExpression* left_operand, ArithmeticExpression* right_operand, ArithOp op) :
-    ArithmeticExpression(source_location, BINOP),
-    left_operand(left_operand),
-    right_operand(right_operand),
-    op(op) {}
+    ArithmeticExpression{source_location, BINOP},
+    left_operand{left_operand},
+    right_operand{right_operand},
+    op{op} {}
     
 ABinaryOperation::~ABinaryOperation() {
     delete left_operand;

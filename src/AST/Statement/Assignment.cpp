@@ -1,9 +1,9 @@
 #include "AST/Statement/Assignment.h"
 
 Assignment::Assignment(size_t source_location, std::string&& varname, ArithmeticExpression* value_expression) : 
-        Statement(source_location, ASSIGN), 
-        varname(std::move(varname)), 
-        value_expression(value_expression) {}
+    Statement{source_location, ASSIGN},
+    varname{std::move(varname)}, 
+    value_expression{value_expression} {}
 
 Assignment::~Assignment() {
     delete value_expression;

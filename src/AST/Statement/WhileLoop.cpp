@@ -1,9 +1,9 @@
 #include "AST/Statement/WhileLoop.h"
 
 WhileLoop::WhileLoop(size_t source_location, BoolExpression* condition, Statement* loop_body) :
-    Statement(source_location, WHILE),
-    condition(condition),
-    loop_body(loop_body) {}
+    Statement{source_location, WHILE},
+    condition{condition},
+    loop_body{loop_body} {}
 
 WhileLoop::~WhileLoop() {
     delete condition;

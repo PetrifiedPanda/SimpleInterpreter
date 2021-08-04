@@ -1,11 +1,11 @@
 #include "AST/Statement/ForLoop.h"
 
 ForLoop::ForLoop(size_t source_location, Statement* initStatement, BoolExpression* condition, Statement* incr_expr, Statement* loop_body) :
-    Statement(source_location, FOR),
-    init_expr(initStatement),
-    condition(condition),
-    incr_expr(incr_expr),
-    loop_body(loop_body) {}
+    Statement{source_location, FOR},
+    init_expr{initStatement},
+    condition{condition},
+    incr_expr{incr_expr},
+    loop_body{loop_body} {}
 
 ForLoop::~ForLoop() {
     delete init_expr;

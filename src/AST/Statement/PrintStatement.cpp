@@ -1,8 +1,8 @@
 #include "AST/Statement/PrintStatement.h"
 
 PrintStatement::PrintStatement(size_t source_location, ArithmeticExpression* to_print) :
-        Statement(source_location, PRINT),
-        to_print(to_print) {}
+    Statement{source_location, PRINT},
+    to_print{to_print} {}
     
 PrintStatement::~PrintStatement() {
     delete to_print;

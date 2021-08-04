@@ -1,6 +1,6 @@
 #include "AST/State.h"
 
-State::State() : variables_() {}
+State::State() : variables_{} {}
 
 void State::clear() {
     variables_.clear();
