@@ -1,4 +1,4 @@
-#include "BoolLiteral.h"
+#include "AST/BoolExpression/BoolLiteral.h"
 
 BoolLiteral::BoolLiteral(size_t source_location, bool value) :
         BoolExpression(source_location, LIT),

@@ -4,10 +4,6 @@
 
 #include "Error/SyntaxError.h"
 
-std::string test = "FNSOFDSOKF";
-
-Parser::Parser() : command_(test), tokens_(), currentToken_() {}
-
 Parser::Parser(const std::string& command, std::list<Token>&& tokens) : command_(command), tokens_(std::move(tokens)), currentToken_() {
     if (!tokens_.empty()) {
         currentToken_ = std::move(*tokens_.begin());

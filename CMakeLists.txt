@@ -9,13 +9,15 @@ project(${This} LANGUAGES CXX)
 
 set(Sources
     Main.cpp
-    Tokenizer.cpp
-    Parser.cpp
-    Visitor.cpp
+    src/Tokenizer.cpp
+    src/Parser.cpp
+    src/Visitor.cpp
 )
 
 
 add_executable(${This} ${Sources})
 
-add_subdirectory(AST)
-add_subdirectory(Error)
+target_include_directories(${This} PRIVATE ./include)
+
+add_subdirectory(src/AST)
+add_subdirectory(src/Error)

@@ -1,4 +1,4 @@
-#include "Skip.h"
+#include "AST/Statement/Skip.h"
 
 Skip::Skip(size_t source_location) :
     Statement(source_location, SKIP) {}

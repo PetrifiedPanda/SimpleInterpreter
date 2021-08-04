@@ -1,4 +1,4 @@
-#include "PrintStatement.h"
+#include "AST/Statement/PrintStatement.h"
 
 PrintStatement::PrintStatement(size_t source_location, ArithmeticExpression* to_print) :
         Statement(source_location, PRINT),

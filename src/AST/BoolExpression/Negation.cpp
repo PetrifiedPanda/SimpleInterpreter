@@ -1,4 +1,4 @@
-#include "Negation.h"
+#include "AST/BoolExpression/Negation.h"
 
 Negation::Negation(size_t source_location, BoolExpression* expr) :
     BoolExpression(source_location, NEG),

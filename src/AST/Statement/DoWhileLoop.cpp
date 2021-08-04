@@ -1,4 +1,4 @@
-#include "DoWhileLoop.h"
+#include "AST/Statement/DoWhileLoop.h"
 
 DoWhileLoop::DoWhileLoop(size_t source_location, BoolExpression* condition, Statement* loop_body) :
     Statement(source_location, DOWHILE),

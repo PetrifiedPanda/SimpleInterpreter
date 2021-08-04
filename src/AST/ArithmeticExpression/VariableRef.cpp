@@ -1,4 +1,4 @@
-#include "VariableRef.h"
+#include "AST/ArithmeticExpression/VariableRef.h"
 
 VariableRef::VariableRef(size_t source_location, std::string&& spelling) :
         ArithmeticExpression(source_location, VAR),

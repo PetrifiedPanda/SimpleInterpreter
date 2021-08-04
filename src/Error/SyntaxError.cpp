@@ -1,4 +1,4 @@
-#include "SyntaxError.h"
+#include "Error/SyntaxError.h"
 
 SyntaxError::SyntaxError(const std::string& command, size_t source_location, std::initializer_list<Token::Type> expected, Token::Type got) : InterpreterError(command, source_location), expected_(expected), got_(got) {
     exception_str_ += "Syntax Error on character " + std::to_string(source_location_) + "\nExpected token of type ";

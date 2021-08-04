@@ -11,7 +11,6 @@ class Parser {
     Token currentToken_;
 
    public:
-    Parser();
     Parser(const std::string& command, std::list<Token>&& tokens);
 
     void next_token();

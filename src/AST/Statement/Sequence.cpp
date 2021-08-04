@@ -1,4 +1,4 @@
-#include "Sequence.h"
+#include "AST/Statement/Sequence.h"
 
 Sequence::Sequence(size_t source_location, Statement* first, Statement* second) :
     Statement(source_location, SEQ),

@@ -1,4 +1,4 @@
-#include "WhileLoop.h"
+#include "AST/Statement/WhileLoop.h"
 
 WhileLoop::WhileLoop(size_t source_location, BoolExpression* condition, Statement* loop_body) :
     Statement(source_location, WHILE),

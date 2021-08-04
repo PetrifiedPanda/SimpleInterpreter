@@ -1,4 +1,4 @@
-#include "Comparision.h"
+#include "AST/BoolExpression/Comparision.h"
 
 Comparision::Comparision(size_t source_location, ArithmeticExpression* left_operand, ArithmeticExpression* right_operand, CompOp op) :
     BoolExpression(source_location, COMP),

@@ -1,4 +1,4 @@
-#include "NumericLiteral.h"
+#include "AST/ArithmeticExpression/NumericLiteral.h"
 
 NumericLiteral::NumericLiteral(size_t source_location, int value) :
         ArithmeticExpression(source_location, LIT),

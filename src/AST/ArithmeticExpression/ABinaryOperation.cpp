@@ -1,4 +1,4 @@
-#include "ABinaryOperation.h"
+#include "AST/ArithmeticExpression/ABinaryOperation.h"
 
 ABinaryOperation::ABinaryOperation(size_t source_location, ArithmeticExpression* left_operand, ArithmeticExpression* right_operand, ArithOp op) :
     ArithmeticExpression(source_location, BINOP),

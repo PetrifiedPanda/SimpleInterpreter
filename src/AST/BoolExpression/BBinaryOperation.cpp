@@ -1,4 +1,4 @@
-#include "BBinaryOperation.h"
+#include "AST/BoolExpression/BBinaryOperation.h"
 
 BBinaryOperation::BBinaryOperation(size_t source_location, BoolExpression* leftOperand, BoolExpression* right_operand, LogOp op) :
     BoolExpression(source_location, BINOP),

@@ -1,4 +1,4 @@
-#include "InputCommand.h"
+#include "AST/ArithmeticExpression/InputCommand.h"
 
 #include <iostream>
 
